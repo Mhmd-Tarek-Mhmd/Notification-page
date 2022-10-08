@@ -1,0 +1,90 @@
+[
+  {
+    "user": {
+      "name": "Mark Webber",
+      "avatar": "assets/avatars/mark-webber.webp"
+    },
+    "referingTo": {
+      "type": "post",
+      "content": "My first tournament today!"
+    },
+    "isUnread": true,
+    "timestamp": "1m ago",
+    "text": "reacted to your recent post"
+  },
+  {
+    "user": {
+      "name": "Angela Gray",
+      "avatar": "assets/avatars/angela-gray.webp"
+    },
+    "referingTo": null,
+    "isUnread": true,
+    "timestamp": "5m ago",
+    "text": "followed you"
+  },
+  {
+    "user": {
+      "name": "Jacob Thompson",
+      "avatar": "assets/avatars/jacob-thompson.webp"
+    },
+    "referingTo": {
+      "type": "group",
+      "content": "Chess Club"
+    },
+    "isUnread": true,
+    "timestamp": "1 day ago",
+    "text": "has joined your group"
+  },
+  {
+    "user": {
+      "name": "Rizky Hasanuddin",
+      "avatar": "assets/avatars/rizky-hasanuddin.webp"
+    },
+    "referingTo": {
+      "type": "message",
+      "content": "Hello, thanks for setting up the Chess Club. I've been a member for a few weeks now and I'm already having lots of fun and improving my game."
+    },
+    "isUnread": false,
+    "timestamp": "5 days ago",
+    "text": "sent you a private message"
+  },
+  {
+    "user": {
+      "name": "Kimberly Smith",
+      "avatar": "assets/avatars/kimberly-smith.webp"
+    },
+    "referingTo": {
+      "type": "picture",
+      "content": "assets/avatars/chess.webp"
+    },
+    "isUnread": false,
+    "timestamp": "1 week ago",
+    "text": "commented on your picture"
+  },
+  {
+    "user": {
+      "name": "Nathan Peterson",
+      "avatar": "assets/avatars/nathan-peterson.webp"
+    },
+    "referingTo": {
+      "type": "post",
+      "content": "5 end-game strategies to increase your win rate"
+    },
+    "isUnread": false,
+    "timestamp": "2 weeks ago",
+    "text": "reacted to your recent post"
+  },
+  {
+    "user": {
+      "name": "Anna Kim",
+      "avatar": "assets/avatars/anna-kim.webp"
+    },
+    "referingTo": {
+      "type": "group",
+      "content": "Chess Club"
+    },
+    "isUnread": false,
+    "timestamp": "2 weeks ago",
+    "text": "left the group"
+  }
+]
