@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Notification page</title>
+  </head>
+  <body>
+    <main class="main">
+      <header class="header | align-center-flex">
+        <h1 class="align-center-flex" id="page-label">
+          <strong class="page-title | title">Notifications</strong>
+          <span
+            role="alert"
+            aria-live="assertive"
+            aria-label="There are 3 unread notifications"
+            class="notes-count"
+            id="notes-count"
+          >
+            3
+          </span>
+        </h1>
+
+        <button class="pointer">Mark all as read</button>
+      </header>
+
+      <div role="region" aria-labelledby="page-label" class="container"></div>
+    </main>
+  </body>
+</html>
