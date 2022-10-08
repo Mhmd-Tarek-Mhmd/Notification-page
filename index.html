@@ -5,6 +5,203 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notification page</title>
+    <style>
+      :root {
+        --white: hsl(0, 0%, 100%);
+        --red: hsla(1, 90%, 64%, 1);
+        --blue: hsla(219, 85%, 26%, 1);
+        --light-blue: hsla(210, 60%, 98%, 1);
+        --dark-blue: hsl(224, 21%, 14%);
+        --gray: hsla(219, 14%, 63%, 1);
+        --dark-gray: hsla(219, 12%, 42%, 1);
+        --light-gray: hsla(205, 33%, 90%, 1);
+
+        --body-cl: var(--gray);
+        --title-cl: var(--dark-blue);
+        --pointer-hover-cl: var(--blue);
+        --count-cl: var(--white);
+        --post-name-cl: var(--dark-gray);
+        --msg-border-cl: var(--light-gray);
+
+        --body-bg: var(--light-blue);
+        --main-bg: var(--white);
+        --count-bg: var(--blue);
+        --unread-bg: var(--light-blue);
+        --unread-dot-bg: var(--red);
+        --msg-hover-bg: hsla(211, 68%, 94%, 1);
+
+        --gap-xs: 0.25rem;
+        --gap-sm: 0.5rem;
+        --gap-md: 0.75rem;
+        --gap-lg: 1rem;
+        --gap-xl: 1.25rem;
+        --gap-xxl: 1.5rem;
+      }
+
+      /*
+        Reset
+      */
+
+      body,
+      h1,
+      h3,
+      blockquote {
+        margin: 0;
+        padding: 0;
+      }
+      button {
+        border: none;
+        background: none;
+      }
+      a {
+        text-decoration: none;
+      }
+
+      /*
+        Typography
+      */
+
+      @supports not (font-variation-settings: normal) {
+        @font-face {
+          font-family: "Plus Jakarta Sans";
+          font-weight: 500;
+          src: url("assets/fonts/static/PlusJakartaSans-Medium.ttf");
+        }
+        @font-face {
+          font-family: "Plus Jakarta Sans";
+          font-weight: 800;
+          src: url("assets/fonts/static/PlusJakartaSans-ExtraBold.ttf");
+        }
+      }
+      @supports (font-variation-settings: normal) {
+        @font-face {
+          font-family: "Plus Jakarta Sans";
+          font-weight: 500 800;
+          src: url("assets/fonts/PlusJakartaSans-VariableFont_wght.ttf");
+        }
+      }
+      body {
+        font: 500 14px/1 "Plus Jakarta Sans";
+      }
+      @media (min-width: 768px) {
+        body {
+          font-size: 16px;
+        }
+      }
+      button {
+        font: inherit;
+      }
+      strong {
+        font-weight: 800;
+      }
+
+      /*
+        Base
+      */
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        color: var(--body-cl);
+        background-color: var(--body-bg);
+      }
+      button,
+      a {
+        color: inherit;
+      }
+      img {
+        height: auto;
+        max-width: 100%;
+      }
+
+      /*
+        Utilities
+      */
+
+      .align-center-flex {
+        display: flex;
+        align-items: center;
+      }
+
+      .title {
+        font-weight: 800;
+        color: var(--title-cl);
+      }
+
+      .pointer {
+        cursor: pointer;
+        will-change: color;
+      }
+      .pointer:hover {
+        color: var(--pointer-hover-cl) !important;
+      }
+
+      .avatar {
+        width: 39px;
+        height: 39px;
+      }
+      @media (min-width: 768px) {
+        .avatar {
+          width: 45px;
+          height: 45px;
+        }
+      }
+
+      /*
+        Page
+      */
+
+      body {
+        height: 100vh;
+        display: grid;
+      }
+      .main {
+        width: 100%;
+        margin-inline: auto;
+        border-radius: 14px;
+        padding-inline: var(--gap-lg);
+        background-color: var(--main-bg);
+      }
+      @media (min-width: 768px) {
+        body {
+          place-items: center;
+        }
+        .main {
+          padding: 0 30px;
+          max-width: 730px;
+        }
+      }
+
+      /* [1] Header */
+
+      .header {
+        padding-block: 24px;
+        justify-content: space-between;
+      }
+      .header .page-title {
+        font-size: 1.25rem;
+        margin-right: var(--gap-md);
+      }
+      @media (min-width: 768px) {
+        .header {
+          padding-block: 36px 33px;
+        }
+        .header .title {
+          font-size: 1.5rem;
+        }
+      }
+      .header .notes-count {
+        width: 32px;
+        height: 25px;
+        display: grid;
+        place-items: center;
+        font-size: 1rem;
+        border-radius: 5px;
+        color: var(--count-cl);
+        background-color: var(--count-bg);
+      }
+    </style>
   </head>
   <body>
     <main class="main">
