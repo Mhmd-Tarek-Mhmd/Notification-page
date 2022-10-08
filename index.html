@@ -224,5 +224,153 @@
 
       <div role="region" aria-labelledby="page-label" class="container"></div>
     </main>
+
+    <script>
+      /*
+        Helpers
+      */
+
+      const $ = document.querySelector.bind(document);
+      const $$ = document.querySelectorAll.bind(document);
+      const randomID = () => (Math.random() * Math.random()).toFixed(4);
+
+      function relativeDaysToISoString(numOfDays) {
+        const today = new Date();
+        today.setDate(today.getDate() - numOfDays);
+        return today.toISOString();
+      }
+
+      function handleCounterViews(unreadCount = $$(".note.unread").length) {
+        $("#notes-count").innerHTML = String(unreadCount);
+        $("#notes-count").ariaLabel =
+          unreadCount === 1
+            ? `There is a single notification`
+            : `There are ${unreadCount ? unreadCount : "no"} notifications`;
+      }
+
+      /*
+        Note
+      */
+
+      class Note {
+        constructor(note) {
+          this.note = note;
+        }
+
+        get #user() {
+          const { user } = this.note;
+
+          return {
+            avatar: `<img class="user-avatar | avatar" src="${user.avatar}" alt="" />`,
+            name: `<a href="javascript:void(0)"><strong class="title pointer">${user.name}</strong></a>`,
+          };
+        }
+
+        get #text() {
+          const { text } = this.note;
+          return `<span>${text}</span>`;
+        }
+
+        get #referingTo() {
+          const { referingTo } = this.note;
+          let isMessage = false,
+            isPic = false,
+            views;
+
+          if (!referingTo) return { views: "" };
+
+          const { type, content } = referingTo;
+          switch (type) {
+            case "picture":
+              isPic = true;
+              views = `
+                <a aria-label="To picture post" href="javascript:void(0)" class="pic | avatar">
+                  <img src="${content}" alt="" />
+                </a>
+              `;
+              break;
+            case "message":
+              isMessage = true;
+              views = `<blockquote class="msg">${content}</blockquote>`;
+              break;
+            case "post":
+            case "group":
+              views = `
+                <a href="javascript:void(0)">
+                  <strong
+                    class="${type === "post" ? "post" : "group"}-name | pointer"
+                  >
+                    ${content}
+                  </strong>
+                </a>
+              `;
+          }
+
+          return { isMessage, isPic, views };
+        }
+
+        get #timestamp() {
+          const { timestamp } = this.note;
+          const [val, unit] = timestamp.split(" ");
+          let days;
+
+          if (val.includes("s") || val.includes("m")) {
+            days = 0; // seconds or minutes case
+          } else if (unit.includes("day")) {
+            days = val;
+          } else if (unit.includes("week")) {
+            days = val * 7;
+          } else if (unit.includes("month")) {
+            days = val * 30;
+          }
+
+          return `<time datetime="${relativeDaysToISoString(
+            days
+          )}" class="timestamp">${timestamp}</time>`;
+        }
+
+        build() {
+          const { isUnread } = this.note;
+          const id = `note-label-${randomID()}`;
+          const { avatar, name } = this.#user;
+          const text = this.#text;
+          const { isMessage, isPic, views } = this.#referingTo;
+          const timestamp = this.#timestamp;
+
+          $(".container").innerHTML += `
+            <article
+              class="note ${isUnread ? "unread" : ""} | align-center-flex"
+              aria-labelledby="${id}"
+            >
+              ${avatar}
+              <div class="note-body">
+                <h3 class="txt ${isPic ? "has-pic" : ""}" id="${id}">
+                  ${name}
+                  ${text}
+                  ${!isMessage ? views : ""}
+                  <span aria-hidden="true" class="unread-dot"></span>
+                </h3>
+                ${timestamp}
+                ${isMessage ? views : ""}
+              </div>
+            </article>
+          `;
+        }
+      }
+
+      /*
+        Getting Notifications...
+      */
+
+      fetch("assets/data.json")
+        .then((data) => data.json())
+        .then((notes) => {
+          notes.forEach((noteArr) => {
+            const note = new Note(noteArr);
+            note.build();
+          });
+        })
+        .then(handleCounterViews);
+    </script>
   </body>
 </html>
