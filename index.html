@@ -20,7 +20,7 @@
         --title-cl: var(--dark-blue);
         --pointer-hover-cl: var(--blue);
         --count-cl: var(--white);
-        --post-name-cl: var(--dark-gray);
+        --referringTo-cl: var(--dark-gray);
         --msg-border-cl: var(--light-gray);
 
         --body-bg: var(--light-blue);
@@ -157,11 +157,13 @@
         display: grid;
       }
       .main {
-        width: 100%;
-        margin-inline: auto;
         border-radius: 14px;
         padding-inline: var(--gap-lg);
         background-color: var(--main-bg);
+      }
+      .container {
+        display: grid;
+        gap: var(--gap-lg);
       }
       @media (min-width: 768px) {
         body {
@@ -170,6 +172,9 @@
         .main {
           padding: 0 30px;
           max-width: 730px;
+        }
+        .container {
+          gap: var(--gap-sm);
         }
       }
 
@@ -200,6 +205,92 @@
         border-radius: 5px;
         color: var(--count-cl);
         background-color: var(--count-bg);
+      }
+
+      /* [2] Note */
+
+      .note {
+        position: relative;
+        gap: var(--gap-lg);
+        padding: var(--gap-lg);
+      }
+      @media (min-width: 768px) {
+        .note {
+          gap: var(--gap-xl);
+          padding: var(--gap-xl);
+        }
+      }
+      .note.unread {
+        border-radius: 8px;
+        background-color: var(--unread-bg);
+      }
+
+      /* User Avatar */
+      .note .user-avatar {
+        align-self: flex-start;
+      }
+
+      /* Note Txt */
+      .note .txt {
+        font-weight: 500;
+        line-height: 1.3;
+        font-size: inherit;
+        margin-bottom: 6px;
+      }
+      @media (min-width: 768px) {
+        .note .txt {
+          line-height: 1.5;
+          margin-bottom: var(--gap-xs);
+        }
+      }
+      .note .txt.has-pic {
+        padding-right: 70px;
+      }
+
+      /* ReferringTo To */
+      .note :is(.post-name, .group-name, .msg) {
+        color: var(--referringTo-cl);
+      }
+      .note .pic {
+        display: block;
+        position: absolute;
+        top: var(--gap-lg);
+        right: var(--gap-lg);
+      }
+      @media (min-width: 768px) {
+        .note .pic {
+          top: var(--gap-xl);
+          right: var(--gap-xl);
+        }
+      }
+      .note .msg {
+        line-height: 1.4;
+        padding: var(--gap-lg);
+        margin-top: var(--gap-md);
+        border-radius: var(--gap-xs);
+        transition: 0.3s background-color;
+        border: 1px solid var(--msg-border-cl);
+        will-change: border-color, background-color;
+      }
+      @media (min-width: 768px) {
+        .note .msg {
+          padding: var(--gap-xl);
+        }
+      }
+      .note .msg:hover {
+        border-color: transparent;
+        background-color: var(--msg-hover-bg);
+      }
+
+      .note .unread-dot {
+        width: 8px;
+        height: 8px;
+        display: none;
+        border-radius: 50%;
+        background-color: var(--red);
+      }
+      .note.unread .unread-dot {
+        display: inline-block;
       }
     </style>
   </head>
