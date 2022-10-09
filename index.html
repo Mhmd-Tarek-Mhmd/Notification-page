@@ -246,6 +246,9 @@
       .note .txt.has-pic {
         padding-right: 70px;
       }
+      .note .txt * + * {
+        margin-left: var(--gap-xs);
+      }
 
       /* ReferringTo To */
       .note :is(.post-name, .group-name, .msg) {
@@ -364,7 +367,7 @@
 
         get #text() {
           const { text } = this.note;
-          return `<span>${text}</span>`;
+          return `<span>${" " + text}</span>`;
         }
 
         get #referingTo() {
