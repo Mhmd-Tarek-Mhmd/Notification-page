@@ -310,7 +310,7 @@
           </span>
         </h1>
 
-        <button class="pointer">Mark all as read</button>
+        <button onclick="readAll()" class="pointer">Mark all as read</button>
       </header>
 
       <div role="region" aria-labelledby="page-label" class="container"></div>
@@ -337,6 +337,11 @@
           unreadCount === 1
             ? `There is a single notification`
             : `There are ${unreadCount ? unreadCount : "no"} notifications`;
+      }
+
+      function readAll() {
+        $$(".unread").forEach((ele, i) => ele.classList.remove("unread"));
+        handleCounterViews();
       }
 
       /*
